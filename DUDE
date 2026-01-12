@@ -1,1 +1,23 @@
+breakyourself19.github.io/
+│
+├── index.html 
+├── music.html
+├── poetry.html
+├── gallery.html
+├── contact.html
+│
+├── css/
+│   └── style.css
+│
+├── js/
+│   ├── visualizer.js
+│   ├── poetry.js
+│   └── train.js
+│
+├── assets/
+│   ├── music/
+│   │   └── song.mp3
+│   ├── images/
+│   │   └── art1.jpg
+│   └── quotes.json
 
