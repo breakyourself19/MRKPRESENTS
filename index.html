@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mulenga Bantu</title>
+  <meta name="description" content="Mulenga Bantu — music, poetry, gallery and contact.">
+  <link rel="icon" href="assets/images/favicon.ico">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <nav aria-label="Main navigation">
+      <ul class="nav-list">
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="music.html">Music</a></li>
+        <li><a href="poetry.html">Poetry</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section id="home" aria-labelledby="home-heading">
+      <h1 id="home-heading" class="visually-hidden">Home — Mulenga Bantu</h1>
+
+      <canvas id="trainCanvas" role="img" aria-label="Animated train graphic"></canvas>
+
+      <div id="daily-quote" aria-live="polite">
+        <!-- JS will populate this. Provide fallback for no-JS: -->
+        <noscript><p>Daily quotes are available when JavaScript is enabled.</p></noscript>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Mulenga Bantu</p>
+  </footer>
+
+  <!-- small inline script for progressive enhancement -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script defer src="js/train.js"></script>
+  <script defer src="js/visualizer.js"></script>
+  <script defer src="js/poetry.js"></script>
+</body>
+</html>
