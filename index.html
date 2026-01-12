@@ -7,18 +7,30 @@
   <meta name="description" content="Mulenga Bantu — music, poetry, gallery and contact.">
   <link rel="icon" href="assets/images/favicon.ico">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Small page-specific helpers for the embedded music UI */
+    .hidden { display: none; }
+    #visualizer { width: 100%; max-width: 900px; height: 300px; display: block; }
+    .music-panel { margin: 1rem 0; }
+    .nav-and-controls { display: flex; gap: 1rem; align-items: center; }
+  </style>
 </head>
 <body>
   <header>
-    <nav aria-label="Main navigation">
-      <ul class="nav-list">
-        <li><a href="index.html" aria-current="page">Home</a></li>
-        <li><a href="music.html">Music</a></li>
-        <li><a href="poetry.html">Poetry</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
+    <div class="nav-and-controls">
+      <nav aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="music.html">Music</a></li>
+          <li><a href="poetry.html">Poetry</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Toggle button to open the embedded music panel on the home page -->
+      <button id="open-music" aria-controls="music" aria-expanded="false">Open Music</button>
+    </div>
   </header>
 
   <main id="main">
@@ -32,6 +44,20 @@
         <noscript><p>Daily quotes are available when JavaScript is enabled.</p></noscript>
       </div>
     </section>
+
+    <!-- Embedded music panel (Option A) -->
+    <section id="music" class="hidden music-panel" aria-labelledby="music-heading">
+      <h2 id="music-heading">Music</h2>
+
+      <audio id="audio" controls preload="none">
+        <source src="assets/music/song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+
+      <canvas id="visualizer" role="img" aria-label="Audio visualizer"></canvas>
+
+      <p class="visually-hidden" id="music-desc">Audio player with visualizer. Use the play button to start playback and visualization.</p>
+    </section>
   </main>
 
   <footer>
@@ -42,6 +68,23 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+
+  <!-- Toggle the embedded music panel; focus the audio when opened -->
+  <script>
+    (function () {
+      const btn = document.getElementById('open-music');
+      const panel = document.getElementById('music');
+      const audio = document.getElementById('audio');
+      if (!btn || !panel) return;
+
+      btn.addEventListener('click', () => {
+        const nowOpen = panel.classList.toggle('hidden') === false;
+        btn.setAttribute('aria-expanded', nowOpen ? 'true' : 'false');
+        if (nowOpen && audio) audio.focus();
+      });
+    })();
+  </script>
+
   <script defer src="js/train.js"></script>
   <script defer src="js/visualizer.js"></script>
   <script defer src="js/poetry.js"></script>
